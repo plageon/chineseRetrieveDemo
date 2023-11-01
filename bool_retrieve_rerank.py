@@ -145,6 +145,9 @@ class SearchWindow(QWidget):
         result_num = len(docs)
         if result_num == 0:
             return '没有检索到相关文档', 0
+        # 只显示前64个文档
+        if result_num > 64:
+            docs = docs[:64]
 
         # 对所有文档进行rerank
         rerank_result = self.rerank(query, docs)
